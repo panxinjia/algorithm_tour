@@ -61,12 +61,15 @@ public class QuickSort {
 //        QuickSort.sort(data, 0, data.length - 1);
 //        System.out.println("after sort: " + Arrays.toString(data));
 
-        int[] dataSize = {100000, 1000000, 10000000};
+        int[] dataSize = {100000, 1000000};
         for (int size: dataSize) {
             Integer[] data = ArrayGenerator.generatorRandomArray(size, size);
             Integer[] data2 = Arrays.copyOf(data, data.length);
+            Integer[] data3 = Arrays.copyOf(data, data.length);
             SortHelper.sortTest(SortType.MERGE_SORT, data);
             SortHelper.sortTest(SortType.QUICK_SORT, data2);
+            // 非常慢, 不可忍受
+            // SortHelper.sortTest(SortType.INSERTION_SORT_V3, data3);
         }
 
     }
