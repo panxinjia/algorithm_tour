@@ -21,6 +21,7 @@ public class Sum {
         if (l == arr.length) {
             return 0;
         }
+        // 基本问题拆解: 基础元素 + 数组其它元素的和.
         return arr[l] + sum(arr,  l + 1);
     }
 

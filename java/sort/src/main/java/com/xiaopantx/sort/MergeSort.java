@@ -8,6 +8,10 @@ import java.util.Arrays;
  *
  * 归并排序
  *
+ * 递归函数复杂度分析基本方法 -> 分析递归树
+ *
+ *  主定理 -> 参考<<算法导论>>
+ *
  * @author xiaopantx
  * @version 1.0
  */
@@ -62,6 +66,7 @@ public class MergeSort {
 //        System.out.println("after sort: " + Arrays.toString(data));
         int[] dataSize = {10_0000};
         for (int size: dataSize) {
+            // 不同排序算法的对比, 复杂度层面对算法进行优化, 性能有明显的提升
             Integer[] data = ArrayGenerator.generatorRandomArray(size, size);
             Integer[] data2 = Arrays.copyOf(data,data.length);
             Integer[] data3 = Arrays.copyOf(data,data.length);
