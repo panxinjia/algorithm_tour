@@ -36,6 +36,9 @@ public class SortHelper {
             case MERGE_SORT:
                 MergeSort.sort(data);
                 break;
+            case QUICK_SORT:
+                QuickSort.sort(data);
+                break;
             default:
                 // nothing
         }

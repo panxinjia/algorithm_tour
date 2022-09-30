@@ -64,7 +64,7 @@ public class MergeSort {
 //        System.out.println("before sort: " + Arrays.toString(data));
 //        MergeSort.sort(data, 0, data.length - 1);
 //        System.out.println("after sort: " + Arrays.toString(data));
-        int[] dataSize = {10_0000};
+        int[] dataSize = {100000};
         for (int size: dataSize) {
             // 不同排序算法的对比, 复杂度层面对算法进行优化, 性能有明显的提升
             Integer[] data = ArrayGenerator.generatorRandomArray(size, size);
