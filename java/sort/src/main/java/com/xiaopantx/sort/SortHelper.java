@@ -33,6 +33,9 @@ public class SortHelper {
             case INSERTION_SORT_V3:
                 InsertionSort.sort3(data);
                 break;
+            case MERGE_SORT:
+                MergeSort.sort(data);
+                break;
             default:
                 // nothing
         }
