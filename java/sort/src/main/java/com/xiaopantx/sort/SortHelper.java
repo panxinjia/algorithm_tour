@@ -39,6 +39,9 @@ public class SortHelper {
             case QUICK_SORT:
                 QuickSort.sort(data);
                 break;
+            case QUICK_SORT_V1:
+                QuickSort_V1.sort(data);
+                break;
             default:
                 // nothing
         }
