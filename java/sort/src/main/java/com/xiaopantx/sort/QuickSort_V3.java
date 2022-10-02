@@ -8,8 +8,8 @@ import java.util.Random;
  *
  * 快速排序算法
  *
- *  双路快速排序
- * 
+ *  三路快速排序: 某些特殊的数据样本, 快速排序算法的时间复杂度为O(n)
+ *
  * @author xiaopantx
  * @version 1.0
  */
@@ -33,37 +33,32 @@ public class QuickSort_V3 {
     }
 
     public static <E extends Comparable<E>> int partition(E[] data, int l, int r, Random rnd) {
-        // 引入随机算法
         int pivot = rnd.nextInt(r - l + 1) + l;
-        SortHelper.swap(data, l, pivot);
+        SortHelper.swap(data, pivot, l);
 
-        int j = l;
-        // [l + 1, j] 小于v, [j + 1, i - 1] 大于v
-        for (int i = l + 1; i <= r; i++) {
-            if (data[i].compareTo(data[l]) < 0) {
-                j++;
-                // 第一个元素如果就要完成交换, 处理的是元素自身
-                SortHelper.swap(data, j, i);
-            }else {
-                // 元素大于标定点元素, 什么都不需要做, 继续整理剩余元素即可
+        int lt = l + 1;
+        int gt = r;
+        for (int i = 0; i < r; i++) {
+            if (i >= gt) {
+                break;
             }
+            if (data[i].compareTo(data[l]) < 0) {
+                // 扩充左半部分
+            }
+
+            if (data[i].compareTo(data[l]) > 0) {
+                // 扩充右半部分
+            }
+
+            // data[i].compareTo(data[l]) == 0 -> 什么都不需要做
         }
-        // 将标定元素交换到对应的位置上
-        SortHelper.swap(data, l, j);
-        return j;
+
+        SortHelper.swap(data, l, lt);
+        return lt;
     }
 
     public static void main(String[] args) {
 
-        int n = 50000;
-//        引入随机化, 解决有序数组导致快排退化的问题
-        Integer[] data = ArrayGenerator.generatorOrderedArray(n);
-        SortHelper.sortTest(SortType.QUICK_SORT_V1, data);
-
-//        Integer[] data = ArrayGenerator.generatorRandomArray(n, 1);
-//        SortHelper.sortTest(SortType.QUICK_SORT_V1, data);
     }
-
-
 
 }
