@@ -2,21 +2,20 @@ package com.xiaopantx.sort;
 
 import com.xiaopantx.common.ArrayGenerator;
 
-import java.util.Arrays;
 import java.util.Random;
 
 /**
  *
  * 快速排序算法
  *
- *  1. 有序的数组 -> 加入随机化
- *  2. 元素全部相同的数组 -> 双路快排
+ *  双路快速排序
+ * 
  * @author xiaopantx
  * @version 1.0
  */
-public class QuickSort_V1 {
+public class QuickSort_V3 {
 
-    private QuickSort_V1() {}
+    private QuickSort_V3() {}
 
     public static <E extends Comparable<E>> void sort(E[] data) {
         Random rnd = new Random();

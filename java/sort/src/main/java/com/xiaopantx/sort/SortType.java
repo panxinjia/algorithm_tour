@@ -13,7 +13,7 @@ public enum SortType {
 
     MERGE_SORT("归并排序"),
 
-    QUICK_SORT("快速排序"), QUICK_SORT_V1("快速排序_V1"), QUICK_SORT_V2("快速排序_V2"), QUICK_SORT_V3("快速排序_V3");
+    QUICK_SORT("快速排序"), QUICK_SORT_V1("随机化快排"), QUICK_SORT_V2("双路快排"), QUICK_SORT_V3("三路快排");
 
     private String name;
 
