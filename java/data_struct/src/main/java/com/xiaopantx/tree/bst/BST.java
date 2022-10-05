@@ -1,4 +1,4 @@
-package com.xiaopantx.tree;
+package com.xiaopantx.tree.bst;
 
 /**
  *  二叉树:
@@ -37,8 +37,35 @@ public class BST<E extends Comparable<E>> {
 
     // 添加
     public void add(E e) {
-
+        if (root == null) {
+            root = new Node(e);
+            size++;
+        }else {
+            add(root, e);
+        }
     }
+
+    // 向以node为根的二分搜索树中插入元素e, 递归写法
+    private void add(Node node, E e) {
+        if (e.compareTo(node.e) == 0) {
+            // 等值, 什么都不做, 这个BST定义, 不支持添加重复元素
+        }else if (e.compareTo(node.e) > 0 && node.right == null) {
+            // 添加到右孩子
+            node.right = new Node(e);
+            size++;
+        } else if (e.compareTo(node.e) < 0 && node.left == null) {
+            // 添加到左孩子
+            node.left = new Node(e);
+            size++;
+        }
+
+        if (e.compareTo(node.e) < 0) {
+            add(node.left, e);
+        }else {
+            add(node.right,e);
+        }
+    }
+
 
     // 修改
 
