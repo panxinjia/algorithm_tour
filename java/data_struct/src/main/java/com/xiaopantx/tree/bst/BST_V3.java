@@ -1,9 +1,8 @@
 package com.xiaopantx.tree.bst;
 
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import jdk.nashorn.internal.ir.LiteralNode;
+
+import java.util.*;
 
 /**
  * 二叉树:
@@ -28,12 +27,12 @@ import java.util.Stack;
  * 二分搜索树
  * 1. 中序遍历的结果是顺序排列的 (遵循二分搜索树的定义).
  * 2. 掌握二分搜索树遍历的简便方法 ( 什么时候可以访问, 什么时候具体进行访问 )
- *
- *
+ * <p>
+ * <p>
  * ->
- *      前序遍历的非递归实现
- *
- *     刻意关联知识点, 反复练习, 才能游刃有余,  DFS 和 BFS 在 树 和 图中都有广泛应用.
+ * 前序遍历的非递归实现
+ * <p>
+ * 刻意关联知识点, 反复练习, 才能游刃有余,  DFS 和 BFS 在 树 和 图中都有广泛应用.
  */
 public class BST_V3<E extends Comparable<E>> {
 
@@ -100,9 +99,71 @@ public class BST_V3<E extends Comparable<E>> {
     }
 
     // 删除,  删除二分搜索树上的元素
-    // 1.1 删除二分搜索树中的最小值和最大值
+    // 1.1 查找二分搜索树中的最大值和最小值
+    public E minimum() {
+        if (size == 0) {
+            throw new IllegalArgumentException("BST_V3 is Empty");
+        }
 
-    //
+        return minimum(root).e;
+    }
+
+    private Node minimum(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+        return minimum(node.left);
+    }
+
+    // 查询二分搜索树中的最大值
+    public E maximum() {
+        if (size == 0) {
+            throw new IllegalArgumentException("BST_V3 is Empty");
+        }
+        return maximum(root);
+    }
+
+    private E maximum(Node node) {
+        if (node.right == null) {
+            return node.e;
+        }
+        return maximum(node.right);
+    }
+
+    // 1.2 删除二分搜索树中的最小值和最大值
+    public E removeMin() {
+        E ret = minimum(); // BST 为空时, 这里会提示报错
+        root = removeMin(root);
+        return ret;
+    }
+
+    // 删除最小值, 将可能存在的右子树返回
+    private Node removeMin(Node node) {
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+
+        return removeMax(node.left);
+    }
+
+    public E removeMax() {
+        E ret = maximum();
+        root = removeMax(root);
+        return ret;
+    }
+
+    private Node removeMax(Node node) {
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+        return removeMax(node.right);
+    }
 
 
     // 前序遍历
@@ -247,14 +308,22 @@ public class BST_V3<E extends Comparable<E>> {
     }
 
     public static void main(String[] args) {
+        // 测试删除最大元素, 最小元素
         BST_V3<Integer> bst = new BST_V3<>();
-        int[] nums = {5, 3, 6, 8, 4, 2};
-        for (int num : nums) {
-            bst.add(num);
+
+        int n = 1000;
+        Random rnd = new Random();
+        for (int i = 0; i < n; i++) {
+            bst.add(rnd.nextInt(10000));
         }
 
-        bst.preOrderNR();
-        System.out.println();
-        bst.levelOrder();
+        System.out.println(bst.size());
+
+        System.out.println(bst.removeMin());
+        System.out.println(bst.removeMin());
+        System.out.println(bst.removeMin());
+        System.out.println(bst.removeMin());
+
+
     }
 }
