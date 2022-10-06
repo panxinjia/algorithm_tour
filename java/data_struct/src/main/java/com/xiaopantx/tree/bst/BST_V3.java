@@ -1,5 +1,10 @@
 package com.xiaopantx.tree.bst;
 
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  * 二叉树:
  * <p>
@@ -23,13 +28,19 @@ package com.xiaopantx.tree.bst;
  * 二分搜索树
  * 1. 中序遍历的结果是顺序排列的 (遵循二分搜索树的定义).
  * 2. 掌握二分搜索树遍历的简便方法 ( 什么时候可以访问, 什么时候具体进行访问 )
+ *
+ *
+ * ->
+ *      前序遍历的非递归实现
+ *
+ *     刻意关联知识点, 反复练习, 才能游刃有余,  DFS 和 BFS 在 树 和 图中都有广泛应用.
  */
-public class BST_V2<E extends Comparable<E>> {
+public class BST_V3<E extends Comparable<E>> {
 
     private Node root;
     private int size;
 
-    public BST_V2() {
+    public BST_V3() {
         root = null;
         size = 0;
     }
@@ -88,7 +99,10 @@ public class BST_V2<E extends Comparable<E>> {
         }
     }
 
-    // 删除,  删除二叉搜索树上的元素
+    // 删除,  删除二分搜索树上的元素
+    // 1.1 删除二分搜索树中的最小值和最大值
+
+    //
 
 
     // 前序遍历
@@ -105,6 +119,49 @@ public class BST_V2<E extends Comparable<E>> {
         preOrder(node.left);
         preOrder(node.right);
     }
+
+    // --> 前序, 中序, 后序, 利用栈结构的深度优先遍历(DFS)
+    // 前序遍历非递归写法
+    public void preOrderNR() {
+        //TODO  中序 和 后序的非递归写法, 用的不多, 但是可以练习一下
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            System.out.println(node.e);
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+    }
+
+    // --> 广度优先遍历(BFS), 也叫层序遍历, 常见于算法设计中, 最短路径问题.
+    public void levelOrder() {
+        // 队列结构 -> 广度优先遍历, 常见于搜索策略, 更快的找到答案 ( 根据对问题解的估计, 更快找到解 )
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.addLast(root);
+
+        while (!queue.isEmpty()) {
+
+            Node node = queue.removeFirst();
+            System.out.println(node.e);
+
+            if (node.left != null) {
+                queue.addLast(node.left);
+            }
+
+            if (node.right != null) {
+                queue.addLast(node.right);
+            }
+        }
+    }
+
 
     // 中序遍历, 中序遍历的结果 -> 排序之后的顺序 ( 深刻的认识 )
     public void inOrder() {
@@ -190,18 +247,14 @@ public class BST_V2<E extends Comparable<E>> {
     }
 
     public static void main(String[] args) {
-        BST_V2<Integer> bst = new BST_V2<>();
+        BST_V3<Integer> bst = new BST_V3<>();
         int[] nums = {5, 3, 6, 8, 4, 2};
         for (int num : nums) {
             bst.add(num);
         }
 
-         bst.preOrder();
+        bst.preOrderNR();
         System.out.println();
-        bst.inOrder();
-        System.out.println();
-        bst.postOrder();
-        System.out.println();
-        System.out.println(bst);
+        bst.levelOrder();
     }
 }
