@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// 通用线性搜索
 void * LSearch(void * key, void * base, int len, int elemSize,
                  int (*cmpFunc)(void *, void *)) {
     for (int i = 0; i < len; i++) {
@@ -11,7 +12,7 @@ void * LSearch(void * key, void * base, int len, int elemSize,
     return NULL;
 }
 
-// 整形比较函数, 传入函数时, void * 被转换成 int *, 所以不需要给出元素宽度
+// 整形比较函数, 传入函数时, void * 被隐式转换成 int *, 所以不需要给出元素宽度
 int IntCmp(int * vp1, int * vp2) {
     return *vp1 - *vp2;
 }
