@@ -29,5 +29,7 @@ int main(int argc, const * argv[]) {
     }else {
         printf("elements not fount\n");
     }
+
+    //TODO 完成字符串数组的搜索, 注意指针的跳数, 参数传递
     return 0;
 }

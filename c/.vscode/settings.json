@@ -1,0 +1,6 @@
+{
+    "todo-tree.tree.scanMode": "workspace only",
+    "files.associations": {
+        "stack.h": "c"
+    }
+}
