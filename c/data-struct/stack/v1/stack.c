@@ -18,6 +18,9 @@ void StackPush(Stack *stack, int elem){
         // 内存容量不够, 需要扩容
         stack->elems = realloc(stack->elems, stack->allocLen * 2);
         stack->allocLen = stack->allocLen * 2;
+
+        // 保证内存分配是成功的, 失败退出程序.
+        assert(stack->elems != NULL);
     }
     stack->elems[stack->loginLen] = elem;
     stack->loginLen += 1;
